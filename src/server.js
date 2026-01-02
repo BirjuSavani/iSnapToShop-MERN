@@ -24,7 +24,7 @@ try {
 
 const app = require("./app");
 
-app.listen(port,'127.0.0.1', () => {
+app.listen(port,() => {
   console.log(`Server is running on port ${port}`);
   logger.info(`🚀 Server listening at http://localhost:${port}`);
 });
