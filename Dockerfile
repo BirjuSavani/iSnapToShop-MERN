@@ -1,8 +1,7 @@
 FROM node:20-alpine
-EXPOSE 8080
 WORKDIR /app
-COPY ./package.json .
-COPY ./package-lock.json .
+COPY package*.json ./
 RUN npm install --legacy-peer-deps
 COPY . .
+EXPOSE 8080
 CMD ["npm", "run", "start:prod"]
