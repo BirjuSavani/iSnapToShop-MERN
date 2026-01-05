@@ -201,6 +201,30 @@ body {
 .image-preview.animated {
   animation: fadeIn 0.5s ease;
 }
+.clear-image-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: var(--transition);
+}
+.clear-image-btn:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.clear-image-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
 .preview-image-itself {
   max-width: 100%;
   max-height: 100%;

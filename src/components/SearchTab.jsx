@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { productProfileImage } from "./helpers";
 
-export const SearchTab = ({ state, setShowImageModal }) => {
+export const SearchTab = ({ state, setShowImageModal, clearImage }) => {
   const { isLoading, searchResults, previewImage, error, uploadProgress, isActive } = state;
 
   return (
@@ -44,6 +44,11 @@ export const SearchTab = ({ state, setShowImageModal }) => {
           <div className="card image-preview-card">
             {previewImage ? (
               <div className="image-preview animated">
+                <button className="clear-image-btn" onClick={clearImage} title="Clear image">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
                 <img src={previewImage} alt="Preview" className="preview-image-itself" />
                 {isLoading && (
                   <div className="processing-overlay">
@@ -141,4 +146,5 @@ SearchTab.propTypes = {
     isActive: PropTypes.bool.isRequired,
   }).isRequired,
   setShowImageModal: PropTypes.func.isRequired,
+  clearImage: PropTypes.func.isRequired,
 };

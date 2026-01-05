@@ -98,21 +98,31 @@ export default function Home() {
   // Handle tab change with cleanup
   const handleTabChange = useCallback(
     newTab => {
-      if (activeTab !== "search" && newTab !== "search") {
-        setState(prev => ({
-          ...prev,
-          isLoading: false,
-          searchResults: [],
-          previewImage: null,
-          error: null,
-          uploadProgress: 0,
-        }));
-        setPromptText("");
-      }
+      // Clear image and results when switching tabs
+      setState(prev => ({
+        ...prev,
+        isLoading: false,
+        searchResults: [],
+        previewImage: null,
+        error: null,
+        uploadProgress: 0,
+      }));
+      setPromptText("");
       setActiveTab(newTab);
     },
-    [activeTab]
+    []
   );
+
+  // Clear image function
+  const clearImage = useCallback(() => {
+    setState(prev => ({
+      ...prev,
+      previewImage: null,
+      searchResults: [],
+      error: null,
+      isLoading: false,
+    }));
+  }, []);
 
   const memoizedFetchAnalytics = useCallback(() => {
     fetchAnalyticsData(
@@ -254,7 +264,7 @@ export default function Home() {
 
       <main className="dashboard-content">
         {activeTab === "search" ? (
-          <SearchTab state={state} setShowImageModal={setShowImageModal} />
+          <SearchTab state={state} setShowImageModal={setShowImageModal} clearImage={clearImage} />
         ) : (
           <AnalyticsTab
             startDate={startDate}
