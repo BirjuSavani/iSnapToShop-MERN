@@ -25,10 +25,14 @@ app.use(requestLogger);
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, // frontend
+    origin: [
+      process.env.FRONTEND_URL,
+      "http://localhost:5173",
+      "https://isnaptoshop.netlify.app"
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "Accept", "User-Agent", "Referer"],
   })
 );
 // Enable CORS
